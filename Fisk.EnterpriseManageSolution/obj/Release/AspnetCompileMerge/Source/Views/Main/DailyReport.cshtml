@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "人天填写";
+    Layout = "~/Views/Shared/_LayoutPhone.cshtml";
+    var proData = ViewBag.pro;
+}
+<link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
+<style type="text/css">
+    .el-divider--horizontal {
+        display: block;
+        height: 0.7px;
+        width: 100%;
+        margin: 4px 0;
+    }
+
+    .el-card__body {
+        padding: 20px;
+    }
+
+    .el-input__inner {
+        height: 28px;
+    }
+</style>
+<div id="DailyReport">
+    <div style="position:fixed;left:260px;top:500px;z-index:20000;right:20px;" v-cloak>
+        <el-button type="primary" icon="el-icon-check" v-on:click="DailyRecordLogAdd" circle style="float:right;"></el-button>
+        <el-button icon="el-icon-refresh-right" v-on:click="DailyRecordLogReset" circle style="float:right;margin-top:5px;margin-left:100px;"></el-button>
+    </div>
+    <el-divider></el-divider>
+    <div class="container" style="margin:10px 20px;">
+        <div class="block" style="overflow: hidden; width: 356px;">
+            <div style="float:left">
+                <el-button type="primary" size="small" plain v-on:click="beforeDate" v-html="'上一天'"></el-button>
+            </div>
+            <el-date-picker v-model="Day"
+                            type="date"
+                            v-on:change="LoadDailyRecord"
+                            placeholder="选择日期"
+                            :clearable="false"
+                            size="small"
+                            :editable="false"
+                            style="float:left;width:180px;">
+            </el-date-picker>
+            <div style="float:left">
+                <el-button type="primary" size="small" plain v-on:click="afterDate" :disabled="DisAbled" v-html="'下一天'"></el-button>
+            </div>
+        </div>
+        <el-divider></el-divider>
+        <label><font color="black" size="2" v-html="'以人天为单位,总和不可以超过一天'"></font> </label>
+        <div id="daily" style="display:block;margin-top:8px;" v-cloak>
+            <template>
+                <div v-for="item in allProjects" v-cloak style="font-family:-webkit-pictograph;font-size:13px;font-weight:bold">
+                    <el-card class="box-card" shadow="always">
+                        <el-tag size="mini" style="margin-top:5px;" v-html="item[0].ProjectType"></el-tag>
+                        <div class="block" v-for="(pro,index) in item" style="margin-top:5px;" v-cloak>
+                            <span class="demonstration" v-html="pro.ProjectName"></span>
+                            <el-slider v-model="pro.WorkingTime"
+                                       :step=0.1
+                                       :max=1
+                                       show-stops>
+                            </el-slider>
+                            <el-input v-model="pro.Remark" v-if="pro.WorkingTime>0" placeholder="请填写工作内容"></el-input>
+                        </div>
+                    </el-card>
+                </div>
+            </template>
+        </div>
+        <div id="dailyLog" style="display:none;margin-top:8px;" v-cloak>
+            <template>
+                <div v-for="item in ProDaIlyLogs" v-cloak style="font-family:-webkit-pictograph;font-size:13px;font-weight:bold">
+                    <el-card class="box-card" shadow="always">
+                        <el-tag size="mini" style="margin-top:5px;" v-html="item[0].ProjectType"></el-tag>
+                        <div class="block" v-for="(pro,index) in item" style="margin-top:5px;" v-cloak>
+                            <span class="demonstration" v-html="pro.ProjectName"></span>
+                            <el-slider v-model="pro.WorkingTime"
+                                       :step=0.1
+                                       :max=1
+                                       show-stops>
+                            </el-slider>
+                            <el-input v-model="pro.Remark"  v-if="pro.WorkingTime>0" placeholder="请填写工作内容"></el-input>
+                        </div>
+                    </el-card>
+                </div>
+            </template>
+        </div>
+
+    </div>
+
+    <div style="display:none;">
+        <input value="@proData" id="DataStore" hidden="hidden" />
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/DailyReport?v="+DateTime.Now.Millisecond)
+
+<!-- body 最后 -->
+<script src="~/Scripts/jquery-weui.min.js"></script>

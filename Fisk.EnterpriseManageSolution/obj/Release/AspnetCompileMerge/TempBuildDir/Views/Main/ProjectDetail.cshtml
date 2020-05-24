@@ -1,0 +1,227 @@
+﻿
+@{
+    ViewBag.Title = "项目详情";
+    Layout = "~/Views/Shared/_LayoutPhone.cshtml";
+    var list = ViewBag.memberList;
+}
+<style>
+
+    .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 20%;
+        border-bottom: 0.5px solid #f4ebeb
+    }
+
+    .borderstyle {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        /* border-top: 0.5px solid #C0C0C0; */
+        /* border-bottom: 0.5px solid #C0C0C0; */
+        /* border-left: 0.5px solid #C0C0C0; */
+        /* border-right: 0.5px solid #C0C0C0; */
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-right: 5px;
+        margin-left: 5px;
+        padding: 3px 1px 3px 1px;
+        background-color: #ffffff;
+        box-shadow: 2px 2px 1px 1px rgba(21, 1, 1, 0.1);
+    }
+
+    .picker-toolbar-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+    }
+
+    .usi-btn-cancel,
+    .usi-btn-sure {
+        color: #FF6600
+    }
+
+    .mint-field-core {
+        color: #888;
+    }
+
+    .mint-cell-wrapper {
+        background-image: none !important;
+        font-size: 14px;
+    }
+
+    .mt-progress-progress {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .mt-progress-runway {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .mint-field-core {
+        margin-bottom: 3px;
+        margin-top: 3px;
+        margin-right: 3px;
+        margin-left: 3px;
+        box-shadow: rgb(230, 218, 218) 0px 1px 5px inset;
+    }
+
+    .el-slider {
+        width: 90%;
+    }
+
+    .ProgressDes {
+        width: 20%;
+        color: #888;
+        text-align: right;
+        padding-right: 10px;
+        font-size: 14px;
+    }
+
+    .ProgressFlex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center
+    }
+
+    .mint-button--normal {
+        padding: 5px 20px;
+    }
+
+    .mint-button {
+        font-size: 12px;
+        height: 30px;
+    }
+
+    .weui-cells {
+        font-size: 14px;
+    }
+
+    .picker-slot.picker-slot-center {
+        width: 100%;
+    }
+</style>
+
+
+
+<div id="ProjectDetail" v-cloak>
+    <form @@submit.prevent :model="FormData">
+        <div class="borderstyle">
+            <mt-cell class="box" title="项目名称" v-model="FormData.ProjectName"></mt-cell>
+            <mt-cell class="box" title="项目周期" v-model="FormData.ProjectWeek"></mt-cell>
+            <mt-cell class="box" title="日期" v-model="FormData.NaturalWeek"></mt-cell>
+            <mt-cell class="box" title="合同人天" v-model="FormData.ContractDays"></mt-cell>
+            <mt-cell class="box" title="实际人天" v-model="FormData.ActualDays"></mt-cell>
+            <div class="box ProgressFlex">
+                <mt-cell title="时间进度" style="width:25%"> </mt-cell>
+                <mt-progress style="width:50%;line-height:20px" :value="FormData.TimeProgressCss" v-model="FormData.TimeProgressCss" :bar-height="15"></mt-progress>
+                <span class="ProgressDes" v-html="FormData.TimeProgress+'%'"></span>
+            </div>
+            <div class="box ProgressFlex">
+                <mt-cell title="项目进度" style="width:25%"> </mt-cell>
+                <mt-progress style="width:50%;line-height:20px" :value="FormData.ProjectProgressCss" v-model="FormData.ProjectProgressCss" :bar-height="15"></mt-progress>
+                <span class="ProgressDes" v-html="FormData.ProjectProgress+'%'"></span>
+            </div>
+            <div class="box ProgressFlex">
+                <mt-cell title="人天利用" style="width:25%"> </mt-cell>
+                <mt-progress style="width:50%;line-height:20px" :value="FormData.PersonnelUseCss" v-model="FormData.PersonnelUseCss" :bar-height="15"></mt-progress>
+                <span class="ProgressDes" v-html="FormData.PersonnelUse+'%'"></span>
+            </div>
+
+        </div>
+        <div class="borderstyle" style="overflow:hidden;">
+            <mt-cell class="box" title="项目状态" v-model="FormData.ProjectStatus" @@click.native="ShouPup"></mt-cell>
+            <mt-cell title="项目进度"></mt-cell>
+            <template>
+                <div class="block box">
+                    <el-slider v-model="FormData.ProjectProgress"
+                               :step="5">
+                    </el-slider>
+                </div>
+            </template>
+            <mt-field label="项目周报" placeholder="请填写周报" type="textarea" rows="4" v-model="FormData.WeeklyContent"></mt-field>
+            <mt-field label="差异及分析" placeholder="请填写差异及分析" type="textarea" rows="4" v-model="FormData.Differences"></mt-field>
+            <mt-field label="下周计划" placeholder="请填写下周计划" type="textarea" rows="4" v-model="FormData.NextWeekPlans"></mt-field>
+            <mt-button type="primary" style="float:right;margin:5px 13px;" v-show="!onlyCheck" @@click="DetailAdd" v-html="'保存'"></mt-button>
+            <mt-button type="primary" style="float:right;margin:5px 5px" v-show="!onlyCheck" @@click="MakeReport" v-html="'发送周报'"></mt-button>
+        </div>
+        <div class="borderstyle" v-if="DIVdisplay" style="height:45px;"></div>
+        <div class="borderstyle" style="margin-bottom:40px;" v-show="!IsPrincipal">
+            <mt-button type="default" @@click="AllChoosed" v-html="'全选'"></mt-button>
+            <mt-button type="default" @@click="SendMessage" v-html="'提醒'"></mt-button>
+            <mt-button type="default" @@click="Onfenpei" v-html="'分配'"></mt-button>
+
+            <div v-show="!onlyCheck" style="margin-top:20px;margin-bottom:10px;overflow:hidden;">
+                <label><font color="black" style="font-family:微软雅黑;margin-left:50px;font-size:14px" v-html="'项目成员'"></font> </label>
+                <label><font color="black" style="font-family:微软雅黑;margin-left:50px;font-size:14px;" v-html="'工时详情'"></font></label>
+                <label><font color="black" style="font-family:微软雅黑;font-size:14px;float:right;margin-right:50px;" v-html="'负责人'"></font></label>
+            </div>
+            <div style="margin-bottom:18px">
+                <div v-for="item in memberList">
+                    <div class="weui-cell weui-cell_swiped">
+                        <div class="weui-cell__bd" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="weui-cells weui-cells_checkbox" style="margin-top:0px">
+                                <label class="weui-cell weui-check__label" v-bind:for="item.userid">
+                                    <div class="weui-cell__hd" @@click="GetChoosed">
+                                        <input type="checkbox" name="checkbox1" v-bind:id="item.userid" v-bind:checked="item.checked" v-model="item.checked">
+                                    </div>
+                                    <div class="weui-cell__bd" @@click="getInfo">
+                                        <p style="float:left;margin-left:10px;width:100px;" v-html="item.name"></p>
+                                        <p style="float:left;margin-left:15px;" @@click="getInfo" v-html="item.WorkingTime+'/天'"></p>
+                                        <el-switch style="float:right;margin-right:35px;" v-model="item.Isprincipal" @@change="CancelPrincipal(item.Isprincipal,item.userid)"></el-switch>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="weui-cell__ft" style="">
+                            <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:" @@click.stop="DelthisMember(item.userid)">删除</a>
+                            <a class="weui-swiped-btn weui-swiped-btn_default close-swipeout" href="javascript:" @@click.stop="CancelthisMember($event)">取消</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="weui-cells weui-cells_checkbox" style="margin-top:0px" v-show="memberList.length==0">
+                    <label class="weui-cell weui-check__label">
+                        <div class="weui-cell__bd">
+                            <p style="text-align:center;font-weight:bolder;color:gray;" v-html="'暂无人员'"></p>
+                        </div>
+                    </label>
+                </div>
+                <div class="weui-cells weui-cells_checkbox" style="margin-top:0px" v-show="memberList.length>0">
+                    <label class="weui-cell weui-check__label">
+                        <div class="weui-cell__bd">
+                            <p style="float:left;margin-left:45px;width:100px;" v-html="'合计'"></p>
+                            <p style="float:left;margin-left:10px;" v-html="allCount+'/天'"></p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <mt-popup v-model="popupVisible" popup-transition="popup-fade" :close-on-click-modal="false" position="bottom" style="width:100%" lock-scroll="true">
+            <mt-picker :slots="slots" @@change="onValuesChange" style="width: 100%;" show-toolbar>
+                <div class="picker-toolbar-title">
+                    <div class="usi-btn-cancel" @@click="cancel" v-html="'取消'"></div>
+                    <div class="" v-html="'项目状态'"></div>
+                    <div class="usi-btn-sure" @@click="makeSure" v-html="'确定'"></div>
+                </div>
+            </mt-picker>
+        </mt-popup>
+    </form>
+    <div style="display:none;">
+        <input hidden="hidden" id="DataStore" value="@list" />
+    </div>
+</div>
+@Scripts.Render("~/bundles/ProjectDetail?v=" + DateTime.Now.Millisecond)
+<script src="~/Scripts/jquery-weui.min.js"></script>

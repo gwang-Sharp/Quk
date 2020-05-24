@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "CustomerList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewBag.list;
+}
+
+<link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+<script src="~/Content/layui/layui.js"></script>
+
+<div id="CustomerList" style="padding:20px;">
+    <el-form :model="SearchContent" :inline="true" class="demo-form-inline" size="small">
+        <div>
+            <el-form-item label="客户名称">
+                <el-input placeholder="请输入客户名称" v-model="SearchContent.name"></el-input>
+            </el-form-item>
+            <el-form-item label="电话">
+                <el-input placeholder="请输入电话" v-model="SearchContent.TelPhone"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @@click="SearchCustomer" v-html="'查询'"></el-button>
+            </el-form-item>
+        </div>
+    </el-form>
+    <div style="margin-bottom:10px;">
+        <el-button type="primary" @@click="CreateCustomer" v-html="'创建客户'"></el-button>
+    </div>
+    <div id="dataTable">
+        <template>
+            <el-table :data="CustomerList"
+                      border
+                      size="small"
+                      style="width: auto">
+                <el-table-column prop="CustomerName"
+                                 label="客户名称"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="Telephone"
+                                 label="电话"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="TaxNumber"
+                                 label="纳税人识别号"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="CompanyAddress"
+                                 label="单位地址"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="CreateTime"
+                                 label="创建时间"
+                                 align="center">
+                </el-table-column>
+                <el-table-column label="操作"
+                                 align="center">
+                    <template slot-scope="scope">
+                        <el-button size="mini"
+                                   @@click="handleEdit(scope.$index, scope.row)">
+                            编辑
+                        </el-button>
+                        <el-button size="mini"
+                                   type="danger"
+                                   @@click="handleDelete(scope.$index, scope.row)">
+                            删除
+                        </el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </template>
+        <template>
+            <div class="block" style="margin-top:10px;">
+                <el-pagination @@size-change="handleSizeChange"
+                               @@current-change="handleCurrentChange"
+                               :current-page="pagination.currentpage"
+                               :page-sizes="pagination.pagesizes"
+                               :page-size="pagination.pagesize"
+                               layout="total, sizes, prev, pager, next, jumper"
+                               :total="pagination.allNum">
+                </el-pagination>
+            </div>
+        </template>
+    </div>
+    <div style="display:none;margin:20px;" id="form">
+        <el-form :model="FormModel" @@submit.native.prevent ref="FormModel" label-width="100px" class="demo-ruleForm" size="small">
+            <el-form-item label="客户名称" prop="CustomerName">
+                <el-input autocomplete="off" v-model="FormModel.CustomerName"></el-input>
+            </el-form-item>
+            <el-form-item label="客户简称" prop="CustomerAbbreviation">
+                <el-input autocomplete="off" v-model="FormModel.CustomerAbbreviation"></el-input>
+            </el-form-item>
+            <el-form-item label="纳税人识别号" prop="TaxNumber">
+                <el-input autocomplete="off" v-model="FormModel.TaxNumber"></el-input>
+            </el-form-item>
+            <el-form-item label="单位地址" prop="CompanyAddress">
+                <el-input autocomplete="off" v-model="FormModel.CompanyAddress"></el-input>
+            </el-form-item>
+            <el-form-item label="电话" prop="Telephone">
+                <el-input autocomplete="off" v-model="FormModel.Telephone"></el-input>
+            </el-form-item>
+            <el-form-item label="联系人" prop="Contacts">
+                <el-input autocomplete="off" v-model="FormModel.Contacts"></el-input>
+            </el-form-item>
+            <el-form-item label="联系人职位" prop="ContactTitle">
+                <el-input autocomplete="off" v-model="FormModel.ContactTitle"></el-input>
+            </el-form-item>
+            <el-form-item label="联系人电话" prop="ContactPhone">
+                <el-input autocomplete="off" v-model="FormModel.ContactPhone"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @@click="AddOrUpdate">提交</el-button>
+                <el-button @@click="resetForm('FormModel')">重置</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
+    <div style="display:none;">
+        <input value="@list" id="DataStore" hidden="hidden" />
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/CustomerList?v="+DateTime.Now.Millisecond)

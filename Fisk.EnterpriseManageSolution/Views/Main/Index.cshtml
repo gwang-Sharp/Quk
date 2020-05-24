@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "加载中...";
+    Layout = "~/Views/Shared/_LayoutPhone.cshtml";
+}
+<div id="HomePage">
+</div>
+<script type="text/javascript">
+    var That_GetQueryValue1 = function (queryName) {
+        reg = new RegExp("(^|&)" + queryName + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return decodeURI(r[2]);
+
+        } else {
+            return null;
+        }
+    }
+    var vm = new Vue({
+        el: "#HomePage",
+        data: {
+            code: ''
+        },
+        created: function () {
+            //var code = That_GetQueryValue1("code");
+            var code = "bEcr_e-PenzEomLzIYTEN_3EGgpeRNaEeKyQlv1Dnco";
+            const loading = this.$loading({
+                lock: true,
+                text: 'Loading',
+                spinner: 'el-icon-loading',
+                background: 'rgba(0, 0, 0, 0.7)'
+            });
+            if (code != null) {
+                window.location.href = "/main/Empty/" + code
+            } else {
+                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww4515070b8618c982&redirect_uri=quk.fisksoft.com%3a6889%2fmain%2findex&response_type=code&scope=snsapi_base&state=#wechat_redirect";
+            }
+        },
+        mounted: function () {
+        }
+    })
+
+</script>

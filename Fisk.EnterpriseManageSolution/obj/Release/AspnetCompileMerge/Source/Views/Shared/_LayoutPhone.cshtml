@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html style="height:100%">
+<head>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/CssPackage")
+    @Scripts.Render("~/bundles/JSPackage")
+
+</head>
+<body style="height:100%;background-color: rgb(245, 245, 248);">
+    <div style="display:block;height:45px">
+        <img style="width: 80px;margin-left: 10px;" src="~/Content/Plugins/Image/Logo.png" alt="Logo" />
+    </div>
+    <!-- 主体内容 -->
+    @RenderBody()
+
+
+    <div id="Tabbar" v-show="BottomMenuDisplay">
+        <mt-tabbar v-model="TabbarSelected" :fixed="true" style="box-shadow: inset 0px 1px 5px #e6dada;z-index:1002">
+            <mt-tab-item id="List" v-on:click.native="Prolist" style="border-right: 0.5px solid;">
+                <img slot="icon" :src="menuIcom.list" />
+                <span v-html="'项目列表'"></span>
+            </mt-tab-item>
+            <mt-tab-item id="Personal" v-on:click.native="PMwork">
+                <img slot="icon" :src="menuIcom.Persona" />
+                <span v-html="mennuTitle"></span>
+            </mt-tab-item>
+        </mt-tabbar>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    if (!sessionStorage["Timer"]) {
+        sessionStorage.setItem("Timer", 30);
+        sessionStorage.setItem("Start", false);
+    }
+    else {
+        if (sessionStorage["Start"] == "true") {
+            var set= setInterval(function () {
+                sessionStorage["Timer"] = parseInt(sessionStorage.getItem("Timer")) - 1;
+                if (parseInt(sessionStorage["Timer"]) == 0) {
+                    sessionStorage["Start"] = false;
+                    sessionStorage["Timer"] = 30;
+                    window.clearInterval(set);
+                }
+            }, 1000)
+        }
+    }
+    var Master = new Vue({
+        el: '#Tabbar',
+        data() {
+            return {
+                BottomMenuDisplay: false,
+                TabbarSelected: '',
+                menuIcom: {
+                    list: "/Content/Plugins/Image/查找 表单 列表.png",
+                    Persona: "/Content/Plugins/Image/日报工时.png"
+                },
+                mennuTitle: '',
+                Isprincipal:''
+            }
+        },
+        mounted: function () {
+            this.Isprincipal = '@ViewBag.Isprincipal';
+            if (this.Isprincipal == 'False') {
+                this.mennuTitle = "PM人天";
+            }
+            else {
+                this.mennuTitle = "人天填写";
+            }
+        },
+        methods: {
+            Prolist: function () {
+                window.location.href = "/main/ProjectList";
+            },
+            PMwork: function () {
+                var onlycheck = '@ViewBag.onlyCheck';
+                if (onlycheck == 'False' && this.mennuTitle =="PM人天") {
+                    window.location.href = "/main/WeekReport";
+                }
+                else if (this.mennuTitle == "人天填写")
+                {
+                    window.location.href = "/main/DailyReport";
+                }
+                else {
+                    $.toast.prototype.defaults.duration = 500;
+                    $.toast("您无需写周报", "cancel");
+                }
+            },
+        }
+    })
+
+</script>

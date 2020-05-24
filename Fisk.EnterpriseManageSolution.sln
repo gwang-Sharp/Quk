@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fisk.EnterpriseManageSolution", "Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageSolution.csproj", "{08DBA0C2-8B2E-4092-9E35-AFBDDE3D4183}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fisk.EnterpriseManageBusiness", "Fisk.EnterpriseManageBusiness\Fisk.EnterpriseManageBusiness.csproj", "{E2B54658-3068-498A-8D35-FB5E3FD3685E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fisk.EnterpriseManageDataAccess", "Fisk.EnterpriseManageDataAccess\Fisk.EnterpriseManageDataAccess.csproj", "{CA4D2DBD-2FFF-4F65-8C10-96C40942E080}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fisk.EnterpriseManageViewModel", "Fisk.EnterpriseManageViewModel\Fisk.EnterpriseManageViewModel.csproj", "{16B638FD-9342-4C8F-9A36-2A13819BCC85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fisk.EnterpriseManageUtilities", "Fisk.EnterpriseManageUtilities\Fisk.EnterpriseManageUtilities.csproj", "{FFBC2CC6-A4CE-4888-9D97-7B98A94BBCCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08DBA0C2-8B2E-4092-9E35-AFBDDE3D4183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08DBA0C2-8B2E-4092-9E35-AFBDDE3D4183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08DBA0C2-8B2E-4092-9E35-AFBDDE3D4183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08DBA0C2-8B2E-4092-9E35-AFBDDE3D4183}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2B54658-3068-498A-8D35-FB5E3FD3685E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2B54658-3068-498A-8D35-FB5E3FD3685E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2B54658-3068-498A-8D35-FB5E3FD3685E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2B54658-3068-498A-8D35-FB5E3FD3685E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA4D2DBD-2FFF-4F65-8C10-96C40942E080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4D2DBD-2FFF-4F65-8C10-96C40942E080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4D2DBD-2FFF-4F65-8C10-96C40942E080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4D2DBD-2FFF-4F65-8C10-96C40942E080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16B638FD-9342-4C8F-9A36-2A13819BCC85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16B638FD-9342-4C8F-9A36-2A13819BCC85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16B638FD-9342-4C8F-9A36-2A13819BCC85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16B638FD-9342-4C8F-9A36-2A13819BCC85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFBC2CC6-A4CE-4888-9D97-7B98A94BBCCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFBC2CC6-A4CE-4888-9D97-7B98A94BBCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFBC2CC6-A4CE-4888-9D97-7B98A94BBCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFBC2CC6-A4CE-4888-9D97-7B98A94BBCCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3285384A-7B50-4CD0-BA1C-93F868C3CFB7}
+	EndGlobalSection
+EndGlobal

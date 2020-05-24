@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "PM人天";
+    Layout = "~/Views/Shared/_LayoutPhone.cshtml";
+    var reportData = ViewBag.pro;
+}
+<link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
+
+<style type="text/css">
+    .el-divider--horizontal {
+        display: block;
+        height: 0.7px;
+        width: 100%;
+        margin: 4px 0;
+    }
+
+    .el-card__body {
+        padding: 20px;
+    }
+</style>
+<style>
+    .el-divider--horizontal {
+        margin: 10px 0;
+    }
+</style>
+<div id="WeekReport">
+    <el-divider style=""></el-divider>
+    <div class="container" style="margin:5px 10px;">
+        <div class="block">
+            <el-date-picker v-model="Week"
+                            type="week"
+                            format="yyyy 第 WW 周"
+                            placeholder="选择周"
+                            v-on:change="LoadWeekRecord"
+                            :clearable="false"
+                            :editable="false">
+            </el-date-picker>
+            <div style="position:fixed;left:260px;top:500px;z-index:20000;right:15px;" v-cloak>
+                <el-button type="primary" icon="el-icon-check" v-on:click="WeekRecordLogADD" circle style="float:right"></el-button>
+                <el-button icon="el-icon-refresh-right" v-on:click="WorkTimeClear" circle style="float:right;margin-left:100px;margin-top:5px"></el-button>
+            </div>
+        </div>
+        <el-divider></el-divider>
+        <label><font color="black" size="2" v-html="'以人天为单位,总和不可以超过一周(单位:周/7天)'"></font> </label>
+        <div id="week" style="display:block;margin-top:5px;margin-bottom:70px">
+            <template>
+                <div v-for="item in allProjects" v-cloak style="font-family:-webkit-pictograph;font-size:13px;font-weight:bold">
+                    <el-card class="box-card" shadow="always">
+                        <el-tag size="mini" style="margin-bottom:2px;" v-html="item[0].ProjectType"></el-tag>
+                        <div class="block" v-for="(pro,index) in item" style="margin-top:5px;" v-cloak>
+                            <span class="demonstration" v-html="pro.ProjectName"></span>
+                            <el-slider v-model="pro.WorkingTime"
+                                       :step=1
+                                       :max=7
+                                       show-stops>
+                            </el-slider>
+                        </div>
+                    </el-card>
+                </div>
+            </template>
+        </div>
+        <div style="display:none;margin-top:5px;margin-bottom:70px" id="WeekData">
+            <template>
+                <div v-for="item in WeekRePortData" v-cloak style="font-family:-webkit-pictograph;font-size:13px;font-weight:bold">
+                    <el-card class="box-card" shadow="always">
+                        <el-tag size="mini" style="margin-bottom:2px;" v-html="item[0].ProjectType"></el-tag>
+                        <div class="block" v-for="(pro,index) in item" style="margin-top:5px;" v-cloak>
+                            <span class="demonstration" v-html="pro.ProjectName"></span>
+                            <el-slider v-model="pro.WorkingTime"
+                                       :step=1
+                                       :max=7
+                                       show-stops>
+                            </el-slider>
+                        </div>
+                    </el-card>
+                </div>
+            </template>
+        </div>
+    </div>
+    <div style="display:none;">
+        <input value="@reportData" id="DataStore" hidden="hidden" />
+    </div>
+</div>
+@Scripts.Render("~/bundles/WeekReport?v="+DateTime.Now.Millisecond)
+<!-- body 最后 -->
+<script src="~/Scripts/jquery-weui.min.js"></script>

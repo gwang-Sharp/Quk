@@ -1,0 +1,15 @@
+C:\Users\Yz\Desktop\MyProject\内部管理系统\存储库111\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\bin\Release\Fisk.EnterpriseManageViewModel.dll
+C:\Users\Yz\Desktop\MyProject\内部管理系统\存储库111\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\bin\Release\Fisk.EnterpriseManageViewModel.pdb
+C:\Users\Yz\Desktop\MyProject\内部管理系统\存储库111\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\obj\Release\Fisk.EnterpriseManageViewModel.csprojAssemblyReference.cache
+C:\Users\Yz\Desktop\MyProject\内部管理系统\存储库111\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\obj\Release\Fisk.EnterpriseManageViewModel.csproj.CoreCompileInputs.cache
+C:\Users\Yz\Desktop\MyProject\内部管理系统\存储库111\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\obj\Release\Fisk.EnterpriseManageViewModel.dll
+C:\Users\Yz\Desktop\MyProject\内部管理系统\存储库111\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\obj\Release\Fisk.EnterpriseManageViewModel.pdb
+F:\FISK\project\存储库1\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\bin\Release\Fisk.EnterpriseManageViewModel.dll
+F:\FISK\project\存储库1\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\bin\Release\Fisk.EnterpriseManageViewModel.pdb
+F:\FISK\project\存储库1\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\obj\Release\Fisk.EnterpriseManageViewModel.csprojAssemblyReference.cache
+F:\FISK\project\存储库1\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\obj\Release\Fisk.EnterpriseManageViewModel.csproj.CoreCompileInputs.cache
+F:\FISK\project\存储库1\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\obj\Release\Fisk.EnterpriseManageViewModel.dll
+F:\FISK\project\存储库1\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\obj\Release\Fisk.EnterpriseManageViewModel.pdb
+F:\FISK\project\存储库1\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\bin\Release\log4net.dll
+F:\FISK\project\存储库1\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\bin\Release\log4net.xml
+F:\FISK\project\存储库1\Fisk.EnterpriseManageSolution\Fisk.EnterpriseManageViewModel\obj\Release\Fisk.EnterpriseManageViewModel.csproj.CopyComplete

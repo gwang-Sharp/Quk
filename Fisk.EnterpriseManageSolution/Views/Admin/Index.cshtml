@@ -1,0 +1,221 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewBag.list;
+}
+<link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+
+<script src="~/Content/layui/layui.js"></script>
+<div id="ProManage" style="padding:20px">
+    <el-form :model="SearchContent" :inline="true" class="demo-form-inline" size="small">
+        <div>
+            <el-form-item label="项目名称">
+                <el-input placeholder="请输入项目名称" v-model="SearchContent.ProName"></el-input>
+            </el-form-item>
+            <el-form-item label="合同编号">
+                <el-input placeholder="请输入合同编号" v-model="SearchContent.ContractNum"></el-input>
+            </el-form-item>
+            <el-form-item label="客户名称">
+                <el-input placeholder="请输入客户名称" v-model="SearchContent.name"></el-input>
+            </el-form-item>
+        </div>
+        <div>
+            <el-form-item label="选择时间">
+                <el-col :span="11">
+                    <el-form-item>
+                        <el-date-picker type="date" placeholder="选择日期" style="width: 100%;" v-model="SearchContent.startTime" value-format="yyyy-MM-dd"></el-date-picker>
+                    </el-form-item>
+                </el-col>
+                <el-col class="line" :span="2" v-html="'-'"></el-col>
+                <el-col :span="11">
+                    <el-form-item>
+                        <el-date-picker type="date" placeholder="选择日期" style="width: 100%;" v-model="SearchContent.endTime" value-format="yyyy-MM-dd"></el-date-picker>
+                    </el-form-item>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="项目经理">
+                <el-input placeholder="请输入项目经理" v-model="SearchContent.PM"></el-input>
+            </el-form-item>
+        </div>
+    </el-form>
+    <el-button style="margin-left:775px;" type="primary" @@click="SearchProject" v-html="'查询'"></el-button>
+    <div style="margin-bottom:10px;">
+        <el-button type="primary" @@click="CreateProject" v-html="'创建项目'"></el-button>
+        @*<el-button type="success" icon="el-icon-download" @@click="ExcelGet" v-html="'导出报表'"></el-button>*@
+    </div>
+    <div id="dataTable">
+        <template>
+            <el-table :data="ProList"
+                      border
+                      size="small"
+                      style="width: auto;">
+                <el-table-column prop="CustomerName"
+                                 label="客户名称"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="ProjectName"
+                                 label="项目名称"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="ProjectType"
+                                 label="项目类型"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="ContractNumber"
+                                 label="合同编号"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="SigningTime"
+                                 label="合同签订时间"
+                                 :formatter="DateUpdate"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="PMname"
+                                 label="项目经理"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="StartTime"
+                                 label="开始时间"
+                                 :formatter="DateUpdate"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="EstimateEndTime"
+                                 label="预计结束时间"
+                                 :formatter="DateUpdate"
+                                 align="center">
+                </el-table-column>
+                <el-table-column prop="ProjectStatus"
+                                 label="项目状态"
+                                 align="center">
+                </el-table-column>
+                <el-table-column label="操作"
+                                 align="center"
+                                 width="300px">
+                    <template slot-scope="scope">
+                        <el-button size="mini"
+                                   @@click="handleEdit(scope.$index, scope.row)">
+                            编辑
+                        </el-button>
+                        <el-button size="mini"
+                                   type="danger"
+                                   @@click="handleDelete(scope.$index, scope.row)">
+                            删除
+                        </el-button>
+                        <el-button size="mini"
+                                   type="primary"
+                                   @@click="handleInfo(scope.$index, scope.row)">
+                            详情
+                        </el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </template>
+        <template>
+            <div class="block" style="margin-top:10px;">
+                <el-pagination @@size-change="handleSizeChange"
+                               @@current-change="handleCurrentChange"
+                               :current-page="pagination.currentpage"
+                               :page-sizes="pagination.pagesizes"
+                               :page-size="pagination.pagesize"
+                               layout="total, sizes, prev, pager, next, jumper"
+                               :total="pagination.allNum">
+                </el-pagination>
+            </div>
+        </template>
+    </div>
+    <el-dialog :title="Title"
+               :visible.sync="dialogVisible"
+               width="40%"
+               :before-close="dialogClosed"
+               :close="dialogClosed">
+        <div style="margin:20px;margin-bottom:0px" id="form">
+            <el-form :model="FormModel" @@submit.native.prevent ref="FormModel" label-width="100px" class="demo-ruleForm" size="small">
+                <el-form-item label="客户名称" prop="CustomerName">
+                    <el-select v-model="FormModel.CustomerName" style="width:100%;" :disabled="FormModel.ProjectType=='默认'?true:false">
+                        <el-option :key="item.CustomerId" v-bind:label="item.CustomerName" v-bind:value="item.CustomerName" v-for="item in CustomersList"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="项目名称" prop="ProjectName">
+                    <el-input autocomplete="off" v-model="FormModel.ProjectName"></el-input>
+                </el-form-item>
+                <el-form-item label="项目类型" prop="ProjectType">
+                    <el-select v-model="FormModel.ProjectType" style="width:100%;" :disabled="FormModel.ProjectType=='默认'?true:false">
+                        <el-option :key="item.Dic_TypeId" v-bind:label="item.Dic_Type" v-bind:value="item.Dic_Type" v-for="item in ProTypes"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="合同编号"
+                              prop="ContractNumber"
+                              :rules="[{
+                              required: true, message: '请输入合同编号', trigger: 'blur'
+                              }]">
+                    <el-input autocomplete="off" v-model="FormModel.ContractNumber"></el-input>
+                </el-form-item>
+                <el-form-item label="合同人天"
+                              prop="ContractDays"
+                              :rules="[
+                                  { type: 'number', message: '必须为数字值'}
+                                  ]">
+                    <el-input autocomplete="off" v-model.number="FormModel.ContractDays"></el-input>
+                </el-form-item>
+                <el-form-item label="合同签订时间" prop="SigningTime">
+                    <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="FormModel.SigningTime" style="width:100%;"></el-date-picker>
+                </el-form-item>
+
+                <el-form-item label="项目经理" prop="PMname">
+                    <el-col :span="6">
+                        <el-select v-model="PMmodel.DepartName" style="width:100%;" :disabled="FormModel.ProjectType=='默认'?true:false" placeholder="选择部门" @@change="DepartChanged">
+                            <el-option :key="item.userid" v-bind:label="item.name" v-bind:value="item.name" v-for="item in ProDepartList"></el-option>
+                        </el-select>
+                    </el-col>
+                    <el-col class="line" :span="3" v-html="'-'" v-show="ProChildDepartList.length>0"></el-col>
+                    <el-col :span="6" v-show="ProChildDepartList.length>0">
+                        <el-select v-model="PMmodel.ChildrenDepartName" style="width:100%;" :disabled="FormModel.ProjectType=='默认'?true:false" placeholder="选择子部门" @@change="MemberGet">
+                            <el-option :key="item.userid" v-bind:label="item.name" v-bind:value="item.name" v-for="item in ProChildDepartList"></el-option>
+                        </el-select>
+                    </el-col>
+                    <el-col class="line" :span="3" v-html="'-'"></el-col>
+                    <el-col :span="6">
+                        <el-select v-model="FormModel.PMname" style="width:100%;" :disabled="FormModel.ProjectType=='默认'?true:false" placeholder="选择项目经理">
+                            <el-option :key="item.userid" v-bind:label="item.name" v-bind:value="item.name" v-for="item in ProPmList"></el-option>
+                        </el-select>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="开始时间" prop="StartTime">
+                    <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="FormModel.StartTime" style="width:100%;"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="预计结束时间" prop="EstimateEndTime">
+                    <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="FormModel.EstimateEndTime" style="width:100%;"> </el-date-picker>
+                </el-form-item>
+                <el-form-item label="实际结束时间" prop="ActualEndTime">
+                    <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="FormModel.ActualEndTime" style="width:100%;"> </el-date-picker>
+                </el-form-item>
+                <el-form-item label="项目状态" prop="ProjectStatusId">
+                    <el-select v-model="FormModel.ProjectStatus" style="width:100%;" :disabled="FormModel.ProjectType=='默认'?true:false">
+                        <el-option :key="item.Dic_TypeId" :label="item.Dic_Type" :value="item.Dic_Type" v-for="item in ProStatus"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="实际项目人天"
+                              prop="ActualManDay"
+                              :rules="[
+                                  { type: 'number', message: '必须为数字值'}
+                                  ]">
+                    <el-input autocomplete="off" v-model.number="FormModel.ActualManDay"  disabled="true"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button @@click="dialogClosed" v-html="'取 消'"></el-button>
+                    <el-button type="primary" @@click="AddOrUpdate" v-html="'确 定'"></el-button>
+                    <el-button @@click="resetForm" v-html="'重置'"></el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+    </el-dialog>
+
+
+    <div style="display:none;">
+        <input value="@list" id="DataStore" hidden="hidden" />
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/ManageIndex?v=" + DateTime.Now.Millisecond)
+

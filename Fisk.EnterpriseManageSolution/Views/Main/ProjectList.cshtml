@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewBag.Title = "项目列表";
+    Layout = "~/Views/Shared/_LayoutPhone.cshtml";
+
+}
+<style type="text/css">
+    .box11 {
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center
+    }
+
+    .Mainbox {
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center
+    }
+
+    .Mainbox_Project {
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        /*border-bottom: 0.5px dashed #C0C0C0*/
+    }
+
+    .Box_Process {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 10px;
+        font-size: 12px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .Mainbox_Process {
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center
+    }
+
+    .Buttonbox {
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: flex-start
+    }
+
+    .listborder {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        /* border-top: 0.5px solid #C0C0C0; */
+        /* border-bottom: 0.5px solid #C0C0C0; */
+        /* border-left: 0.5px solid #C0C0C0; */
+        /* border-right: 0.5px solid #C0C0C0; */
+        margin-bottom: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+        padding: 3px 1px 3px 1px;
+        background-color: #ffffff;
+        box-shadow: 2px 2px 1px 1px rgba(21, 1, 1, 0.1);
+    }
+
+    .tag_status1 {
+        padding: 2px 4px;
+        background-color: #F56C6C;
+        color: #fff;
+    }
+
+    .tag_status2 {
+        padding: 2px 4px;
+        background-color: #E2DA3A;
+        color: #fff;
+    }
+
+    .tag_status3 {
+        padding: 2px 4px;
+        background-color: #67C23A;
+        color: #fff;
+    }
+
+    .ProjectTitle {
+        padding-top: 5px;
+        padding-left: 10px;
+        padding-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .ProjectContent {
+        line-height: 20px;
+        padding-left: 10px;
+        font-size: 12px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .Button {
+        line-height: 0.8;
+        white-space: nowrap;
+        cursor: pointer;
+        background: #fff;
+        border: 1px solid #dcdfe6;
+        color: #606266;
+        -webkit-appearance: none;
+        text-align: center;
+        box-sizing: border-box;
+        outline: none;
+        margin: 0;
+        transition: .1s;
+        font-weight: 500;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        padding: 12px 20px;
+        font-size: 14px;
+        border-radius: 4px;
+        color: #fff;
+        background-color: #409eff;
+        border-color: #409eff;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .mt-progress-runway {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .weui-search-bar {
+        box-shadow: 1px 1px 1px 1px rgba(21, 1, 1, 0.1);
+        padding: 0px;
+    }
+
+    .searchhide {
+        display: none
+    }
+
+    .searchshow {
+        display: block
+    }
+</style>
+
+<div id="ProjectList" style="margin-bottom: 60px;">
+    <div class="weui-search-bar listborder" style="margin:0px auto;width: 95%;" id="searchBar">
+        <form class="weui-search-bar__form" @@submit.prevent ref="form" :model="form" action="javascript:return true">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input v-model="form.SearchContent" @@keydown="searchTo($event)" class="weui-search-bar__input" v-on:blur="SearchOnBlur()" id="searchInput" placeholder="搜索" required="">
+                <a href="javascript:" v-on:click="SearchReset()" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText" v-on:click="Search" v-bind:class="SearchBar.Labledisplay">
+                <i class="weui-icon-search"></i>
+                <span v-html="'搜索'"></span>
+            </label>
+        </form>
+    </div>
+    <div class="box listborder" v-for="(item, index) in ProjectData">
+        <div v-on:click="DataRowDetail(item)">
+            <div style="width:100%" class="Mainbox_Project">
+                <div style="width:100%" class="ProjectContent"><span v-html="'项目名称：'"></span> <span style="font-weight: bold;" v-html="item.ProjectName"></span></div>
+                <div style="width:100%;" class="Box_Process"><div v-html="'项目进度：'"></div><mt-progress :value="item.ProjectProgress" v-model="item.ProjectProgress" :bar-height="10" style="width:70%;line-height:20px"></mt-progress></div>
+            </div>
+            <div style="width:100%" class="Mainbox_Process">
+                <div style="width:60%" class="ProjectContent">时间进度：<span v-html="item.TimeProgress+'%'"></span> <span style="color:red" v-html="item.ProgressExceed"></span></div>
+                <div style="width:30%" class="ProjectContent">状态：<span v-bind:class="item.ProgressCss" v-html="item.ProjectStatus"></span></div>
+                <div style="width:60%" class="ProjectContent">人天匹配度：<span v-html="item.PersonnelUse+'%'"></span></div>
+                <div style="width:30%" class="ProjectContent">开发人员：<span v-html="item.DeveloperSum"></span></div>
+            </div>
+        </div>
+    </div>
+    <div class="infinite-list-wrapper" style="overflow:auto;text-align:center">
+        <div class="weui-loadmore" v-if="loading">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+        </div>
+        @*<p v-if="loading" v-html="'加载中...'"></p>*@
+        <p v-if="noMore" v-html="'没有更多了'"></p>
+    </div>
+</div>
+@Scripts.Render("~/bundles/ProjectList?v="+DateTime.Now.Millisecond)
+<script src="~/Scripts/jquery-weui.min.js"></script>

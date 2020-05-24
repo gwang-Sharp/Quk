@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EnterpriseManageDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CustomerInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerAbbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Contacts" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Validty" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DailyRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WorkingTime" Type="Double" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Validty" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="CreateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PMid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PMname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContractDays" Type="Int32" />
+    <Property Name="ContractNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SigningTime" Type="DateTime" Precision="3" />
+    <Property Name="StartTime" Type="DateTime" Precision="3" />
+    <Property Name="EstimateEndTime" Type="DateTime" Precision="3" />
+    <Property Name="ProjectStatusId" Type="Int32" />
+    <Property Name="ProjectStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EstimateManDay" Type="Int32" />
+    <Property Name="ActualManDay" Type="Int32" />
+    <Property Name="ProjectProgress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectHealth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Validty" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ProjectTeams">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Validty" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="System_Dictionary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dic_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Dic_TypeId" Type="Int32" />
+    <Property Name="Dic_TypeDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Dic_Key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Validty" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WeeklyDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectProgress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContractDays" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ActualDays" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TimeProgress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ImplementationProgress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PersonnelUse" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="WeeklyContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NaturalWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Validty" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WeeklyRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WorkingTime" Type="Int32" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Validty" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="EnterpriseManageDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CustomerInfo" EntityType="Self.CustomerInfo" />
+    <EntitySet Name="DailyRecord" EntityType="Self.DailyRecord" />
+    <EntitySet Name="ProjectInfo" EntityType="Self.ProjectInfo" />
+    <EntitySet Name="ProjectTeams" EntityType="Self.ProjectTeams" />
+    <EntitySet Name="System_Dictionary" EntityType="Self.System_Dictionary" />
+    <EntitySet Name="WeeklyDetail" EntityType="Self.WeeklyDetail" />
+    <EntitySet Name="WeeklyRecord" EntityType="Self.WeeklyRecord" />
+  </EntityContainer>
+</Schema>

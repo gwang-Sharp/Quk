@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EnterpriseManageDBModelStoreContainer" CdmEntityContainer="EnterpriseManageDB">
+    <EntitySetMapping Name="CustomerInfo">
+      <EntityTypeMapping TypeName="EnterpriseManageDBModel.CustomerInfo">
+        <MappingFragment StoreEntitySet="CustomerInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerAbbreviation" ColumnName="CustomerAbbreviation" />
+          <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+          <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Contacts" ColumnName="Contacts" />
+          <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+          <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+          <ScalarProperty Name="Validty" ColumnName="Validty" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateName" ColumnName="CreateName" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyName" ColumnName="ModifyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DailyRecord">
+      <EntityTypeMapping TypeName="EnterpriseManageDBModel.DailyRecord">
+        <MappingFragment StoreEntitySet="DailyRecord">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="WorkingTime" ColumnName="WorkingTime" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Validty" ColumnName="Validty" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="CreateName" ColumnName="CreateName" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyName" ColumnName="ModifyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectInfo">
+      <EntityTypeMapping TypeName="EnterpriseManageDBModel.ProjectInfo">
+        <MappingFragment StoreEntitySet="ProjectInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="PMid" ColumnName="PMid" />
+          <ScalarProperty Name="PMname" ColumnName="PMname" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
+          <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+          <ScalarProperty Name="ContractDays" ColumnName="ContractDays" />
+          <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+          <ScalarProperty Name="SigningTime" ColumnName="SigningTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EstimateEndTime" ColumnName="EstimateEndTime" />
+          <ScalarProperty Name="ProjectStatusId" ColumnName="ProjectStatusId" />
+          <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
+          <ScalarProperty Name="EstimateManDay" ColumnName="EstimateManDay" />
+          <ScalarProperty Name="ActualManDay" ColumnName="ActualManDay" />
+          <ScalarProperty Name="ProjectProgress" ColumnName="ProjectProgress" />
+          <ScalarProperty Name="ProjectHealth" ColumnName="ProjectHealth" />
+          <ScalarProperty Name="Validty" ColumnName="Validty" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateName" ColumnName="CreateName" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyName" ColumnName="ModifyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectTeams">
+      <EntityTypeMapping TypeName="EnterpriseManageDBModel.ProjectTeams">
+        <MappingFragment StoreEntitySet="ProjectTeams">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Validty" ColumnName="Validty" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateName" ColumnName="CreateName" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyName" ColumnName="ModifyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Dictionary">
+      <EntityTypeMapping TypeName="EnterpriseManageDBModel.System_Dictionary">
+        <MappingFragment StoreEntitySet="System_Dictionary">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Dic_Type" ColumnName="Dic_Type" />
+          <ScalarProperty Name="Dic_TypeId" ColumnName="Dic_TypeId" />
+          <ScalarProperty Name="Dic_TypeDesc" ColumnName="Dic_TypeDesc" />
+          <ScalarProperty Name="Dic_Key" ColumnName="Dic_Key" />
+          <ScalarProperty Name="Validty" ColumnName="Validty" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateName" ColumnName="CreateName" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyName" ColumnName="ModifyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WeeklyDetail">
+      <EntityTypeMapping TypeName="EnterpriseManageDBModel.WeeklyDetail">
+        <MappingFragment StoreEntitySet="WeeklyDetail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ProjectProgress" ColumnName="ProjectProgress" />
+          <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
+          <ScalarProperty Name="ContractDays" ColumnName="ContractDays" />
+          <ScalarProperty Name="ActualDays" ColumnName="ActualDays" />
+          <ScalarProperty Name="TimeProgress" ColumnName="TimeProgress" />
+          <ScalarProperty Name="ImplementationProgress" ColumnName="ImplementationProgress" />
+          <ScalarProperty Name="PersonnelUse" ColumnName="PersonnelUse" />
+          <ScalarProperty Name="WeeklyContent" ColumnName="WeeklyContent" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="NaturalWeek" ColumnName="NaturalWeek" />
+          <ScalarProperty Name="ProjectWeek" ColumnName="ProjectWeek" />
+          <ScalarProperty Name="Validty" ColumnName="Validty" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateName" ColumnName="CreateName" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyName" ColumnName="ModifyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WeeklyRecord">
+      <EntityTypeMapping TypeName="EnterpriseManageDBModel.WeeklyRecord">
+        <MappingFragment StoreEntitySet="WeeklyRecord">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="WorkingTime" ColumnName="WorkingTime" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Validty" ColumnName="Validty" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateName" ColumnName="CreateName" />
+          <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyName" ColumnName="ModifyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

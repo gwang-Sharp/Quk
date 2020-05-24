@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EnterpriseManageDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="20" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Position" Type="nvarchar" MaxLength="30" />
+    <Property Name="DepartmentId" Type="int" />
+  </EntityType>
+  <EntityType Name="CustomerInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerAbbreviation" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaxNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telephone" Type="int" />
+    <Property Name="Contacts" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Validty" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DailyRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkingTime" Type="float" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="4000" />
+    <Property Name="Validty" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartmentID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DepartmentList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentID" Type="nvarchar" MaxLength="10" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="NavMenus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuTitle" Type="nvarchar" MaxLength="20" />
+    <Property Name="MenuUrl" Type="nvarchar" MaxLength="20" />
+    <Property Name="MenuIcon" Type="nvarchar" MaxLength="20" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Validty" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateName" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="ProjectInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectTypeId" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectType" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PMid" Type="nvarchar" MaxLength="50" />
+    <Property Name="PMname" Type="nvarchar" MaxLength="50" />
+    <Property Name="PMdepartmentID" Type="int" />
+    <Property Name="ContractNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="SigningTime" Type="datetime" />
+    <Property Name="StartTime" Type="datetime" />
+    <Property Name="ContractDays" Type="int" />
+    <Property Name="EstimateEndTime" Type="datetime" />
+    <Property Name="ProjectStatusId" Type="int" />
+    <Property Name="ProjectStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="EstimateManDay" Type="int" />
+    <Property Name="ActualEndTime" Type="datetime" />
+    <Property Name="ActualManDay" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ProjectProgress" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectHealth" Type="nvarchar" MaxLength="50" />
+    <Property Name="Validty" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ProjectTeams">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsPrincipal" Type="nvarchar" MaxLength="10" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+    <Property Name="DepartmentID" Type="int" Nullable="false" />
+    <Property Name="Validty" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="System_Dictionary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dic_Key" Type="nvarchar" MaxLength="50" />
+    <Property Name="Dic_Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Dic_TypeId" Type="int" />
+    <Property Name="Dic_TypeDesc" Type="nvarchar" MaxLength="50" />
+    <Property Name="Validty" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="WeeklyDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectProgress" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="ActualDays" Type="nvarchar" MaxLength="20" />
+    <Property Name="TimeProgress" Type="nvarchar" MaxLength="20" />
+    <Property Name="ImplementationProgress" Type="nvarchar" MaxLength="20" />
+    <Property Name="PersonnelUse" Type="nvarchar" MaxLength="20" />
+    <Property Name="WeeklyContent" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Differences" Type="nvarchar" MaxLength="3000" />
+    <Property Name="NextWeekPlans" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+    <Property Name="NaturalWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="Validty" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContractDays" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="WeeklyRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkingTime" Type="int" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+    <Property Name="DepartmentID" Type="int" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="Validty" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyTime" Type="datetime" />
+    <Property Name="ModifyUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="EnterpriseManageDBModelStoreContainer">
+    <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerInfo" EntityType="Self.CustomerInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DailyRecord" EntityType="Self.DailyRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepartmentList" EntityType="Self.DepartmentList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NavMenus" EntityType="Self.NavMenus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectInfo" EntityType="Self.ProjectInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectTeams" EntityType="Self.ProjectTeams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="System_Dictionary" EntityType="Self.System_Dictionary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WeeklyDetail" EntityType="Self.WeeklyDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WeeklyRecord" EntityType="Self.WeeklyRecord" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

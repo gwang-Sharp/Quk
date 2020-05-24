@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "ProjectDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .mytag {
+        width: 260px;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+        font-size: 18px;
+        background-color: rgba(236, 245, 255, 1);
+    }
+
+    .tagContent {
+        border: 1px solid gainsboro;
+        height: 130px;
+        line-height: 130px;
+        text-align: center;
+        color: #33CCCC;
+        font-size: 35px;
+    }
+
+    .progressStyle {
+        float: left;
+        width: 550px;
+        margin-left: 15px;
+    }
+</style>
+<div id="ProjectDetail" style="padding:20px;">
+    <div>
+        <el-page-header @@back="goBack" content="项目详情" style="margin-bottom:10px;">
+        </el-page-header>
+        <div>
+            <div style="overflow:hidden">
+                <div style="width:260px;height:180px;float:left;">
+                    <el-tag effect="plain" class="mytag">
+                        预计人天
+                    </el-tag>
+                    <div class="tagContent" v-html="weekdetails.EstimateManDay+'天'"></div>
+                </div>
+                <div style="width:260px;height:180px;float:left;margin-left:192px;">
+                    <el-tag effect="plain" class="mytag">
+                        实际人天
+                    </el-tag>
+                    <div class="tagContent" v-html="weekdetails.ActualDays+'天'"></div>
+                </div>
+                <div style="width:260px;height:180px;float:left;margin-left:192px;">
+                    <el-tag effect="plain" class="mytag">
+                        项目进度
+                    </el-tag>
+                    <div class="tagContent">
+                        <el-progress type="circle" :percentage="weekdetails.ProjectProgress" v-model="weekdetails.ProjectProgress"></el-progress>
+                    </div>
+                </div>
+                <div style="width:260px;height:180px;float:left;margin-left:194px;">
+                    <el-tag effect="plain" class="mytag">
+                        项目健康程度
+                    </el-tag>
+                    <div class="tagContent" v-html="weekdetails.ProjectHealth"></div>
+                </div>
+            </div>
+            <div style="border:1px solid gainsboro;margin-top:10px;overflow:hidden;padding:30px">
+                <div style="overflow:hidden;margin-bottom:20px;">
+                    <div style="float:left">时间进度</div>
+                    <el-progress :text-inside="true" :stroke-width="26" :percentage="weekdetails.TimeProgress" v-model="weekdetails.TimeProgress" class="progressStyle"></el-progress>
+                </div>
+                <div style="overflow:hidden;margin-bottom:20px;">
+                    <div style="float:left">实施进度</div>
+                    <el-progress :text-inside="true" :stroke-width="26" :percentage="weekdetails.ImplementationProgress" v-model="weekdetails.ImplementationProgress" class="progressStyle"></el-progress>
+                </div>
+                <div style="overflow:hidden;">
+                    <div style="float:left">人天使用</div>
+                    <el-progress :text-inside="true" :stroke-width="26" :percentage="weekdetails.PersonnelUseData" v-model="weekdetails.PersonnelUseData" class="progressStyle"></el-progress>
+                </div>
+            </div>
+            <div style="margin-top:10px;height:300px;border:1px solid gainsboro">
+                <el-tag effect="plain">
+                    项目周报
+                </el-tag>
+                <div>
+                    <el-table :data="weekReport" style="width: 100%" max-height="290">
+                        <el-table-column prop="PMname"
+                                         label="PM">
+                        </el-table-column>
+                        <el-table-column prop="WeeklyContent"
+                                         label="周报内容">
+                        </el-table-column>
+                        <el-table-column prop="WorkTime"
+                                         label="周工时(天)">
+                        </el-table-column>
+                        <el-table-column prop="CreateTime"
+                                         label="填写日期">
+                        </el-table-column>
+                    </el-table>
+                </div>
+            </div>
+            <div style="margin-top:10px;height:300px;border:1px solid gainsboro;margin-bottom:100px;">
+                <el-tag effect="plain">
+                    项目组成员
+                </el-tag>
+                <div>
+                    <el-table :data="proMembers" style="width: 100%;" max-height="290">
+                        <el-table-column prop="Name"
+                                         label="名称">
+                        </el-table-column>
+                        <el-table-column prop="WorkingTime"
+                                         label="项目总工时(天)">
+                        </el-table-column>
+                        <el-table-column prop="CreateTime"
+                                         label="最后更新时间"
+                                         :formatter="DATEFORMATER">
+                        </el-table-column>
+                    </el-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/ProjectDetailPC?v="+DateTime.Now.Millisecond)
+

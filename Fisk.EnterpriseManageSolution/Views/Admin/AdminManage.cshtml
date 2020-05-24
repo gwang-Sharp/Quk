@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "AdminManage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .el-header, .el-footer {
+        background-color: #438eb9;
+        color: #333;
+        text-align: center;
+    }
+
+    .el-footer {
+        background-color: #eee;
+    }
+
+    .el-aside {
+        background-color: #4e5465;
+        color: #333;
+        text-align: center;
+    }
+
+    .el-main {
+        background-color: #E9EEF3;
+        color: #333;
+        padding: 0px;
+        overflow: hidden;
+    }
+</style>
+<div id="app">
+    <el-container style="height:-webkit-fill-available">
+        <el-header></el-header>
+        <el-container size="small">
+            <el-aside width="200px">
+                <div v-for="item in NavMenus">
+                    <el-menu :index="item.Id"
+                             class="el-menu-vertical-demo"
+                             background-color="#4e5465"
+                             text-color="#fff"
+                             active-text-color="#ffd04b"
+                             :unique-opened="true">
+                        <el-submenu :index="item.Id">
+                            <template slot="title">
+                                <i :class="item.MenuIcon"></i>
+                                <span v-html="item.MenuTitle"></span>
+                            </template>
+                            <el-menu-item :index="item.Id" :key="item.Id" v-for="child in item.ChildrenMenu" @@click="iframeChangeUrl(child)" v-html="item.MenuTitle"></el-menu-item>
+                        </el-submenu>
+                    </el-menu>
+                </div>
+            </el-aside>
+            <el-main>
+                <iframe id="iframe" style="border:0; width:100%;height:100%;background-color:#FFF;" name="iframe" frameborder="0" :onload="changeFrameHeight()" src=""></iframe>
+            </el-main>
+        </el-container>
+        @*<el-footer></el-footer>*@
+    </el-container>
+</div>
+@Scripts.Render("~/bundles/AdminManage?v="+DateTime.Now.Millisecond)
